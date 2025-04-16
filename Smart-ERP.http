@@ -1,0 +1,6 @@
+@Smart_ERP_HostAddress = http://localhost:5162
+
+GET {{Smart_ERP_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
