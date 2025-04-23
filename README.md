@@ -224,17 +224,17 @@ SmartERP/
 
 ## ✍️ License
 
-MIT – Use freely, contribute openly!
-
+Open-Source
 ---
 
 ## 👨‍💻 Author
 
-**Mohamed** — 
+- [Mohamed Abo Bakr](https://github.com/mohamedbaker)
 ---
 
 ## ✅ Coming Next
 
 - ✅ Refresh tokens
+- ✅ Products Module
 - ✅ Email verification
 - ✅ Account lockout
