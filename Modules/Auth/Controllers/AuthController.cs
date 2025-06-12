@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Smart_ERP.Data;
@@ -78,7 +79,7 @@ namespace Smart_ERP.Controllers
             var token = _jwtService.GenerateToken(user);
             return Ok(new { token });
         }
-        
+
         [HttpGet("user/{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
@@ -132,6 +133,8 @@ namespace Smart_ERP.Controllers
             return Ok("User deleted successfully.");
         }
 
+        // [HttpGet("users")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("users")]
         public async Task<IActionResult> GetUsers()
         {
@@ -148,6 +151,52 @@ namespace Smart_ERP.Controllers
             return Ok(roles);
         }
 
+        /*
+                #region fun based on roles
+                [Authorize(Roles = "Admin, User")] // Allow both Admin and User roles to access
+                [HttpGet("users")]
+                public async Task<IActionResult> GetUsers()
+                {
+                    var currentUserRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        
+                    if (currentUserRole == "Admin")
+                    {
+                        // Get all users if the current user is an Admin
+                        var allUsers = await _context.Users.Include(u => u.Role).ToListAsync();
+                        return Ok(allUsers.Select(u => u.ToString()));
+                    }
+                    else if (currentUserRole == "User")
+                    {
+                        // Get only the current user's data if the current user is a User
+                        var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Assuming you are using Identity and have NameIdentifier claim
+                        if (currentUserId != null)
+                        {
+                            var currentUser = await _context
+                                .Users.Include(u => u.Role)
+                                .Where(u => u.Id == currentUserId) // Assuming your User entity has an Id property
+                                .FirstOrDefaultAsync();
+        
+                            if (currentUser != null)
+                            {
+                                return Ok(currentUser.ToString());
+                            }
+                            else
+                            {
+                                return NotFound("User not found."); // Handle the case where the user ID doesn't exist
+                            }
+                        }
+                        else
+                        {
+                            return Unauthorized("User ID not found in claims."); // Handle the case where User ID claim is missing
+                        }
+                    }
+                    else
+                    {
+                        return Unauthorized("Invalid role."); // Handle cases where the user has an unexpected role
+                    }
+                }
+                #endregion
+        */
         [HttpPost("role")]
         public async Task<IActionResult> CreateRole([FromBody] Role role)
         {

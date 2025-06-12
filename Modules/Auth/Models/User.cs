@@ -23,7 +23,7 @@ namespace Smart_ERP.Modules.Auth.Models
 
         override public string ToString()
         {
-            return $"User: {UserName}, Email: {Email}, Phone: {Phone}, Role: {Role.Name}";
+            return $"User: Id:{Id}, {UserName}, Email: {Email}, Phone: {Phone}, Role: {Role.Name}";
         }
     }
 }

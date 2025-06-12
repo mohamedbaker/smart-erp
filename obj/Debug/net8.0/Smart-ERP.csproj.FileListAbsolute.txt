@@ -114,3 +114,4 @@
 /home/mohamed/Desktop/dotnet CS/erp/Smart-ERP/obj/Debug/net8.0/ref/Smart-ERP.dll
 /home/mohamed/Desktop/dotnet CS/erp/Smart-ERP/bin/Debug/net8.0/DotNetEnv.dll
 /home/mohamed/Desktop/dotnet CS/erp/Smart-ERP/bin/Debug/net8.0/Sprache.dll
+/home/mohamed/Desktop/dotnet CS/erp/Smart-ERP/obj/Debug/net8.0/Smart-ERP.sourcelink.json
